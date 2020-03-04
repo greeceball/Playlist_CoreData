@@ -26,9 +26,6 @@
                                             <rect key="frame" x="5" y="5" width="404" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <action selector="playlistNameTextField:" destination="FMK-Kf-EOF" eventType="editingDidEnd" id="7i5-Xs-Cdp"/>
-                                            </connections>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -136,7 +133,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="8yy-FG-w4v" detailTextLabel="Clv-i2-CHv" style="IBUITableViewCellStyleSubtitle" id="OTH-Zp-eE6">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="songCell" textLabel="8yy-FG-w4v" detailTextLabel="Clv-i2-CHv" style="IBUITableViewCellStyleSubtitle" id="OTH-Zp-eE6">
                                         <rect key="frame" x="0.0" y="119" width="414" height="55.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OTH-Zp-eE6" id="uh4-KH-iYV">
@@ -173,8 +170,17 @@
                         <viewLayoutGuide key="safeArea" id="kBc-wy-WpR"/>
                     </view>
                     <navigationItem key="navigationItem" title="Songs" id="yWV-dV-ppf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="B7e-bv-4bY"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="B7e-bv-4bY">
+                            <connections>
+                                <action selector="addbuttonTapped:" destination="fP3-GR-ORL" id="0f1-2s-zxT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="artistNameTextField" destination="DOe-jJ-uqq" id="TM4-8D-Ws5"/>
+                        <outlet property="songNameTextField" destination="dbZ-MY-Xzb" id="k9D-aC-v6K"/>
+                        <outlet property="tableView" destination="rzZ-FU-WFg" id="wWb-qI-Vux"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mQi-RE-ZB6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

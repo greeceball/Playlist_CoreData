@@ -9,7 +9,7 @@
 import UIKit
 
 class PlaylistViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var playlistNameTextField: UITextField!
     
@@ -28,17 +28,16 @@ class PlaylistViewController: UIViewController {
         playlistNameTextField.text = ""
     }
     
-
+    
     
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toDetailVC" {
+            guard let indexPath = tableView.indexPathForSelectedRow, let destinationVC = segue.destination as? SongDetailViewController else {return}
+            let playlist = PlaylistController.sharedInstance.playlists[indexPath.row]
+            destinationVC.playlist = playlist
+        }
     }
-    
-
 }
 
 extension PlaylistViewController: UITableViewDataSource {

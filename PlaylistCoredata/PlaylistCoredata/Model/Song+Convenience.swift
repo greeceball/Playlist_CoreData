@@ -16,7 +16,7 @@ extension Song {
         self.init(context: moc)
         self.title = name
         self.artist = artistName
-        self.playlist = playlist
+        self.playlist = playList
         
     }
 }
