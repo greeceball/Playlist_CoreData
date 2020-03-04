@@ -10,6 +10,8 @@
 		34CEEEC1241027390006C39F /* Playlist+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CEEEC0241027390006C39F /* Playlist+Convenience.swift */; };
 		34CEEEC3241028950006C39F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CEEEC2241028950006C39F /* CoreDataStack.swift */; };
 		34CEEEC524102F190006C39F /* Song+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CEEEC424102F190006C39F /* Song+Convenience.swift */; };
+		34CEEEC7241033560006C39F /* PlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CEEEC6241033560006C39F /* PlaylistController.swift */; };
+		34CEEEC924103A520006C39F /* SongController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CEEEC824103A520006C39F /* SongController.swift */; };
 		3E1DF45923F3222E0002BC07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1DF45823F3222E0002BC07 /* AppDelegate.swift */; };
 		3E1DF45B23F3222E0002BC07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1DF45A23F3222E0002BC07 /* SceneDelegate.swift */; };
 		3E1DF46023F3222E0002BC07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E1DF45E23F3222E0002BC07 /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 		34CEEEC0241027390006C39F /* Playlist+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Playlist+Convenience.swift"; sourceTree = "<group>"; };
 		34CEEEC2241028950006C39F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		34CEEEC424102F190006C39F /* Song+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Song+Convenience.swift"; sourceTree = "<group>"; };
+		34CEEEC6241033560006C39F /* PlaylistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaylistController.swift; path = PlaylistCoredata/Model/PlaylistController.swift; sourceTree = SOURCE_ROOT; };
+		34CEEEC824103A520006C39F /* SongController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SongController.swift; path = PlaylistCoredata/Model/SongController.swift; sourceTree = SOURCE_ROOT; };
 		3E1DF45523F3222E0002BC07 /* PlaylistCoredata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaylistCoredata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E1DF45823F3222E0002BC07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E1DF45A23F3222E0002BC07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 		3E1DF47323F322A30002BC07 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				34CEEEC6241033560006C39F /* PlaylistController.swift */,
+				34CEEEC824103A520006C39F /* SongController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -197,10 +203,12 @@
 			files = (
 				34CEEEC3241028950006C39F /* CoreDataStack.swift in Sources */,
 				3E1DF45923F3222E0002BC07 /* AppDelegate.swift in Sources */,
+				34CEEEC924103A520006C39F /* SongController.swift in Sources */,
 				34CEEEC524102F190006C39F /* Song+Convenience.swift in Sources */,
 				3E1DF46323F3222E0002BC07 /* PlaylistCoredata.xcdatamodeld in Sources */,
 				3E1DF45B23F3222E0002BC07 /* SceneDelegate.swift in Sources */,
 				34CEEEC1241027390006C39F /* Playlist+Convenience.swift in Sources */,
+				34CEEEC7241033560006C39F /* PlaylistController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
