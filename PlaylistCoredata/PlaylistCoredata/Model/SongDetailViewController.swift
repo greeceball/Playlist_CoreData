@@ -20,7 +20,9 @@ class SongDetailViewController: UIViewController {
     //MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tableView.delegate = self //Delegate
+        tableView.dataSource = self //Delegate
         
 
         // Do any additional setup after loading the view.
@@ -33,8 +35,7 @@ class SongDetailViewController: UIViewController {
         songNameTextField.text = ""
         artistNameTextField.text = ""
         tableView.reloadData()
-        tableView.delegate = self //Delegate
-        tableView.dataSource = self //Delegate
+
     }
 }//eoc
 

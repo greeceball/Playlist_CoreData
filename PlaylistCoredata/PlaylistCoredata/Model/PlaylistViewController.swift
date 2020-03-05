@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class PlaylistViewController: UIViewController {
     
@@ -18,6 +19,9 @@ class PlaylistViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        PlaylistController.sharedInstance.fetchResultsController.delegate = self
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -34,7 +38,7 @@ class PlaylistViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetailVC" {
             guard let indexPath = tableView.indexPathForSelectedRow, let destinationVC = segue.destination as? SongDetailViewController else {return}
-            let playlist = PlaylistController.sharedInstance.playlists[indexPath.row]
+            let playlist = PlaylistController.sharedInstance.fetchResultsController.object(at: indexPath)
             destinationVC.playlist = playlist
         }
     }
@@ -42,12 +46,13 @@ class PlaylistViewController: UIViewController {
 
 extension PlaylistViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return PlaylistController.sharedInstance.playlists.count
+        return PlaylistController.sharedInstance.fetchResultsController.fetchedObjects?.count ?? 0
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath)
-        let playlist = PlaylistController.sharedInstance.playlists[indexPath.row]
+        let playlist = PlaylistController.sharedInstance.fetchResultsController.object(at: indexPath)
         
         let songCount = playlist.songs?.count ?? 0
         
@@ -60,9 +65,57 @@ extension PlaylistViewController: UITableViewDataSource {
 extension PlaylistViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let playlist = PlaylistController.sharedInstance.playlists[indexPath.row]
+            let playlist = PlaylistController.sharedInstance.fetchResultsController.object(at: indexPath)
             PlaylistController.sharedInstance.deletePlaylist(playlist: playlist)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            
         }
     }
 }
+
+extension PlaylistViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type{
+            case .delete:
+                guard let indexPath = indexPath else { break }
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            case .insert:
+                guard let newIndexPath = newIndexPath else { break }
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            case .move:
+                guard let indexPath = indexPath, let newIndexPath = newIndexPath else { break }
+                tableView.moveRow(at: indexPath, to: newIndexPath)
+            case .update:
+                guard let indexPath = indexPath else { break }
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            @unknown default:
+                fatalError()
+        }
+    }
+    //additional behavior for cells
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+            case .insert:
+                tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+            case .delete:
+                tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+            case .move:
+                break
+            case .update:
+                break
+            @unknown default:
+                fatalError()
+        }
+    }
+}
+
+
+
